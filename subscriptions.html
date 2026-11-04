@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Subscriptions | Diced Meal Prep</title>
+<meta name="description" content="Weekly chef-prepared meals delivered every Wednesday or Sunday. Save up to 20%. Pause or cancel any time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Figtree:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="subs">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+
+<main id="main">
+  <header class="wrap page-head">
+    <h1>Subscribe <span class="serif">&amp; save</span></h1>
+    <p class="lead">Fresh meals every week, up to 20% off. Billed weekly. Pause, swap or cancel any time.</p>
+  </header>
+
+  <section class="section-tight" aria-label="How subscriptions work" style="padding-top:0">
+    <div class="wrap">
+      <ol class="how-subs">
+        <li><span class="icon-slot" aria-hidden="true"></span><div><h3>Choose a plan</h3><p>5, 10, 15 or 20 meals a week. Bigger plans save more.</p></div></li>
+        <li><span class="icon-slot" aria-hidden="true"></span><div><h3>We deliver weekly</h3><p>Every Wednesday or Sunday, chilled and ready for the fridge.</p></div></li>
+        <li><span class="icon-slot" aria-hidden="true"></span><div><h3>You stay in control</h3><p>Swap meals, skip a week, pause or cancel from your account.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="wrap builder" data-builder="sub">
+    <section class="build-step" aria-labelledby="s1">
+      <div class="build-step-head"><span class="step-no" aria-hidden="true">1</span><h2 id="s1">Meals <span class="serif">per week</span></h2></div>
+      <div class="option-grid four" role="radiogroup" aria-labelledby="s1">
+        <label class="option"><input type="radio" name="size" value="5" data-save=".05"><span class="face"><span class="big">5</span><span class="save">5% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
+        <label class="option"><input type="radio" name="size" value="10" data-save=".10" checked><span class="face"><span class="big">10</span><span class="save">10% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
+        <label class="option"><input type="radio" name="size" value="15" data-save=".15"><span class="face"><span class="big">15</span><span class="save">15% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
+        <label class="option"><span class="badge tag">Best value</span><input type="radio" name="size" value="20" data-save=".20"><span class="face"><span class="big">20</span><span class="save">20% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
+      </div>
+    </section>
+
+    <section class="build-step" aria-labelledby="s2">
+      <div class="build-step-head"><span class="step-no" aria-hidden="true">2</span><h2 id="s2">Your <span class="serif">delivery day</span></h2></div>
+      <div class="day-grid" role="radiogroup" aria-labelledby="s2">
+        <label class="option"><input type="radio" name="day" value="wed" checked><span class="face"><span class="icon-slot" aria-hidden="true"></span><b>Wednesday</b><span class="sub">Order by Sunday 11:59pm</span></span></label>
+        <label class="option"><input type="radio" name="day" value="sun"><span class="face"><span class="icon-slot" aria-hidden="true"></span><b>Sunday</b><span class="sub">Order by Thursday 11:59pm</span></span></label>
+      </div>
+    </section>
+
+    <section class="build-step" aria-labelledby="s3" id="pick">
+      <div class="build-step-head"><span class="step-no" aria-hidden="true">3</span><h2 id="s3">Your first <span class="serif">week's meals</span></h2></div>
+      <p class="muted">You can swap these each week from your account.</p>
+      <div class="picker-grid" id="picker"></div>
+    </section>
+
+    <section class="two-col" aria-labelledby="faq-title">
+      <h2 id="faq-title">Good <span class="serif">to know</span></h2>
+      <div class="faq">
+        <details><summary>When am I charged?</summary><p>Your subscription is billed weekly, before each delivery. You will see the weekly total before you confirm.</p></details>
+        <details><summary>Can I change my meals?</summary><p>Yes. Swap any meals from your account before the order cut-off for that delivery.</p></details>
+        <details><summary>Can I pause or cancel?</summary><p>Any time, with no fees. Pause for a week or two, or cancel from your account. No contracts.</p></details>
+        <details><summary>Where do you deliver?</summary><p>UK-wide by DPD every Wednesday and Sunday, in insulated bags with gel packs. You can also collect from our Edinburgh store.</p></details>
+      </div>
+    </section>
+  </div>
+
+  <div class="summary-bar" role="region" aria-label="Your subscription">
+    <div class="wrap">
+      <div class="progress" aria-hidden="true"><i></i></div>
+      <div class="summary-text"><span class="count" id="sum-count" aria-live="polite"></span><span class="total" id="sum-total"></span></div>
+      <a class="btn btn-primary" id="sum-cta" href="https://dicedmealprep.co.uk/subscriptions/" aria-disabled="true">Pick meals</a>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/js/meals.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

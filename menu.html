@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Menu | Diced Meal Prep</title>
+<meta name="description" content="131 chef-prepared meals with full macros. Filter by diet, calories and protein, then order for Wednesday or Sunday delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Figtree:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="menu">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="site-header"></div>
+
+<main id="main">
+  <header class="wrap page-head">
+    <h1>The <span class="serif">menu</span></h1>
+    <p class="lead">131 chef-prepared meals, cooked fresh to order and delivered chilled every Wednesday and Sunday.</p>
+    <p class="facts"><span><b>Wednesday delivery:</b> order by Sunday 11:59pm</span><span><b>Sunday delivery:</b> order by Thursday 11:59pm</span><span><b>Collect</b> from our Edinburgh store</span></p>
+  </header>
+
+  <div class="menu-bar">
+    <div class="wrap">
+      <div class="tabs" id="cat-tabs" aria-label="Meal categories"></div>
+      <div class="menu-tools">
+        <span class="result-count" id="result-count" aria-live="polite"></span>
+        <label class="visually-hidden" for="sort">Sort meals</label>
+        <select class="select" id="sort">
+          <option value="popular">Most popular</option>
+          <option value="newest">Newest first</option>
+          <option value="proteinDesc">Protein: high to low</option>
+          <option value="kcalAsc">Calories: low to high</option>
+          <option value="priceAsc">Price: low to high</option>
+          <option value="priceDesc">Price: high to low</option>
+          <option value="az">Name A to Z</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters">Filters</button>
+      </div>
+      <form class="filters-panel" id="filters" hidden>
+        <fieldset class="filter-group"><legend>Diet</legend><div class="chip-row">
+          <label class="chip"><input type="checkbox" name="veg"><span>Vegetarian option</span></label>
+          <label class="chip"><input type="checkbox" name="gf"><span>Gluten free</span></label>
+        </div></fieldset>
+        <fieldset class="filter-group"><legend>Calories</legend><div class="chip-row">
+          <label class="chip"><input type="radio" name="kcal" value="all" checked><span>All</span></label>
+          <label class="chip"><input type="radio" name="kcal" value="lt400"><span>Under 400</span></label>
+          <label class="chip"><input type="radio" name="kcal" value="400"><span>400 to 500</span></label>
+          <label class="chip"><input type="radio" name="kcal" value="500"><span>500 to 600</span></label>
+          <label class="chip"><input type="radio" name="kcal" value="600"><span>600+</span></label>
+        </div></fieldset>
+        <fieldset class="filter-group"><legend>Protein</legend><div class="chip-row">
+          <label class="chip"><input type="radio" name="protein" value="0" checked><span>Any</span></label>
+          <label class="chip"><input type="radio" name="protein" value="30"><span>30g+</span></label>
+          <label class="chip"><input type="radio" name="protein" value="40"><span>40g+</span></label>
+          <label class="chip"><input type="radio" name="protein" value="50"><span>50g+</span></label>
+        </div></fieldset>
+        <fieldset class="filter-group"><legend>Free from</legend>
+          <label class="visually-hidden" for="allergen">Allergen to avoid</label>
+          <select class="select" id="allergen" name="allergen">
+            <option value="">Choose an allergen to avoid</option>
+            <option>Celery</option><option>Gluten</option><option>Crustaceans</option><option>Eggs</option><option>Fish</option><option>Lupin</option><option>Milk</option><option>Molluscs</option><option>Mustard</option><option>Peanuts</option><option>Tree nuts</option><option>Sesame</option><option>Soya</option><option>Sulphites</option>
+          </select>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <section class="section-tight" aria-label="Meals">
+    <div class="wrap">
+      <div class="meal-grid" id="meal-grid"></div>
+      <div class="load-more" id="load-more"><button class="btn btn-ghost" type="button">Load more meals</button></div>
+      <p class="muted small" style="margin-top:32px;text-align:center">Macros are per lean serving. Choose Lean, Bulk or GLP Friendly portions on each meal. Always check packaging for full allergen info.</p>
+    </div>
+  </section>
+
+  <template id="upsell-tpl">
+    <div class="upsell"><div class="upsell-band">
+      <div><h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2.5rem)">Stocking up for <span class="serif">the week?</span></h2>
+      <p class="muted" style="margin-top:8px">Build a meal pack with any meals, any size, or subscribe for weekly drops. Save up to 20%.</p></div>
+      <div class="actions"><a class="btn btn-primary" href="meal-packs.html">Build a pack <span class="arrow" aria-hidden="true">&rarr;</span></a><a class="btn btn-ghost" href="subscriptions.html">Subscribe and save</a></div>
+    </div></div>
+  </template>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/js/meals.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
