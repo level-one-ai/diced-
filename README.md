@@ -4,7 +4,6 @@ Clickable design for dicedmealprep.co.uk: homepage, Menu, Meal Packs and Subscri
 Layout inspired by Frive; colours from the Diced logo (bright green #2CAC28), on a light page.
 
 **Current stage: 4, colour and motion.** Light page, logo green panels and bands, gold outlines on deals and codes. Photos are still labelled placeholders.
-checked before colour, photos and movement go on.
 
 Open `index.html` in a browser, or serve the folder:
 
