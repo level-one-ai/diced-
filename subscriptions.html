@@ -15,17 +15,17 @@
 <div id="site-header"></div>
 
 <main id="main">
-  <header class="wrap page-head">
+  <div class="page-head-band"><header class="wrap page-head">
     <h1>Subscribe <span class="serif">&amp; save</span></h1>
     <p class="lead">Fresh meals every week, up to 20% off. Billed weekly. Pause, swap or cancel any time.</p>
-  </header>
+  </header></div>
 
   <section class="section-tight" aria-label="How subscriptions work" style="padding-top:0">
     <div class="wrap">
       <ol class="how-subs">
-        <li><span class="icon-slot" aria-hidden="true"></span><div><h3>Choose a plan</h3><p>5, 10, 15 or 20 meals a week. Bigger plans save more.</p></div></li>
-        <li><span class="icon-slot" aria-hidden="true"></span><div><h3>We deliver weekly</h3><p>Every Wednesday or Sunday, chilled and ready for the fridge.</p></div></li>
-        <li><span class="icon-slot" aria-hidden="true"></span><div><h3>You stay in control</h3><p>Swap meals, skip a week, pause or cancel from your account.</p></div></li>
+        <li><span class="icon" data-icon="list-checks" aria-hidden="true"></span><div><h3>Choose a plan</h3><p>5, 10, 15 or 20 meals a week. Bigger plans save more.</p></div></li>
+        <li><span class="icon" data-icon="truck" aria-hidden="true"></span><div><h3>We deliver weekly</h3><p>Every Wednesday or Sunday, chilled and ready for the fridge.</p></div></li>
+        <li><span class="icon" data-icon="sliders" aria-hidden="true"></span><div><h3>You stay in control</h3><p>Swap meals, skip a week, pause or cancel from your account.</p></div></li>
       </ol>
     </div>
   </section>
@@ -37,15 +37,15 @@
         <label class="option"><input type="radio" name="size" value="5" data-save=".05"><span class="face"><span class="big">5</span><span class="save">5% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
         <label class="option"><input type="radio" name="size" value="10" data-save=".10" checked><span class="face"><span class="big">10</span><span class="save">10% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
         <label class="option"><input type="radio" name="size" value="15" data-save=".15"><span class="face"><span class="big">15</span><span class="save">15% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
-        <label class="option"><span class="badge tag">Best value</span><input type="radio" name="size" value="20" data-save=".20"><span class="face"><span class="big">20</span><span class="save">20% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
+        <label class="option deal"><span class="badge tag">Best value</span><input type="radio" name="size" value="20" data-save=".20"><span class="face"><span class="big">20</span><span class="save">20% off</span><span class="sub">Billed weekly · cancel any time</span></span></label>
       </div>
     </section>
 
     <section class="build-step" aria-labelledby="s2">
       <div class="build-step-head"><span class="step-no" aria-hidden="true">2</span><h2 id="s2">Your <span class="serif">delivery day</span></h2></div>
       <div class="day-grid" role="radiogroup" aria-labelledby="s2">
-        <label class="option"><input type="radio" name="day" value="wed" checked><span class="face"><span class="icon-slot" aria-hidden="true"></span><b>Wednesday</b><span class="sub">Order by Sunday 11:59pm</span></span></label>
-        <label class="option"><input type="radio" name="day" value="sun"><span class="face"><span class="icon-slot" aria-hidden="true"></span><b>Sunday</b><span class="sub">Order by Thursday 11:59pm</span></span></label>
+        <label class="option"><input type="radio" name="day" value="wed" checked><span class="face"><span class="icon" data-icon="calendar" aria-hidden="true"></span><b>Wednesday</b><span class="sub">Order by Sunday 11:59pm</span></span></label>
+        <label class="option"><input type="radio" name="day" value="sun"><span class="face"><span class="icon" data-icon="calendar" aria-hidden="true"></span><b>Sunday</b><span class="sub">Order by Thursday 11:59pm</span></span></label>
       </div>
     </section>
 
@@ -76,7 +76,11 @@
 </main>
 
 <div id="site-footer"></div>
-<script src="assets/js/meals.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/meals.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 </body>
 </html>

@@ -15,11 +15,12 @@
 <div id="site-header"></div>
 
 <main id="main">
-  <header class="wrap page-head">
+  <div class="page-head-band"><header class="wrap page-head">
     <h1>Build a <span class="serif">meal pack</span></h1>
     <p class="lead">Mix and match any meals. The bigger the pack, the more you save, up to 20%.</p>
+    <p class="deal-note">New here? Take 20% off your first order with code <button class="code-chip" type="button" data-copy="FIRSTORDER" aria-label="Copy code FIRSTORDER">FIRSTORDER</button></p>
     <p class="facts"><span><b>Clearpay:</b> 4 interest-free payments</span><span><b>No subscription</b> needed</span></p>
-  </header>
+  </header></div>
 
   <div class="wrap builder" data-builder="pack">
 
@@ -29,7 +30,7 @@
         <label class="option"><input type="radio" name="size" value="5" data-save=".05"><span class="face"><span class="big">5</span><span class="save">Save 5%</span><span class="sub">or 4 × £8.89 with Clearpay</span></span></label>
         <label class="option"><input type="radio" name="size" value="10" data-save=".10" checked><span class="face"><span class="big">10</span><span class="save">Save 10%</span><span class="sub">or 4 × £16.85 with Clearpay</span></span></label>
         <label class="option"><input type="radio" name="size" value="15" data-save=".15"><span class="face"><span class="big">15</span><span class="save">Save 15%</span><span class="sub">or 4 × £23.87 with Clearpay</span></span></label>
-        <label class="option"><span class="badge tag">Best value</span><input type="radio" name="size" value="20" data-save=".20"><span class="face"><span class="big">20</span><span class="save">Save 20%</span><span class="sub">or 4 × £29.96 with Clearpay</span></span></label>
+        <label class="option deal"><span class="badge tag">Best value</span><input type="radio" name="size" value="20" data-save=".20"><span class="face"><span class="big">20</span><span class="save">Save 20%</span><span class="sub">or 4 × £29.96 with Clearpay</span></span></label>
         <label class="option"><input type="radio" name="size" value="50" data-fixed="274.99"><span class="face"><span class="big">50</span><span class="save">£274.99</span><span class="sub">or 4 × £68.75 with Clearpay</span></span></label>
       </div>
       <details class="faq" style="border:0">
@@ -66,7 +67,11 @@
 </main>
 
 <div id="site-footer"></div>
-<script src="assets/js/meals.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/meals.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 </body>
 </html>

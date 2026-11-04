@@ -15,11 +15,11 @@
 <div id="site-header"></div>
 
 <main id="main">
-  <header class="wrap page-head">
+  <div class="page-head-band"><header class="wrap page-head">
     <h1>The <span class="serif">menu</span></h1>
     <p class="lead">131 chef-prepared meals, cooked fresh to order and delivered chilled every Wednesday and Sunday.</p>
     <p class="facts"><span><b>Wednesday delivery:</b> order by Sunday 11:59pm</span><span><b>Sunday delivery:</b> order by Thursday 11:59pm</span><span><b>Collect</b> from our Edinburgh store</span></p>
-  </header>
+  </header></div>
 
   <div class="menu-bar">
     <div class="wrap">
@@ -85,7 +85,11 @@
 </main>
 
 <div id="site-footer"></div>
-<script src="assets/js/meals.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/meals.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 </body>
 </html>

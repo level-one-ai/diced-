@@ -1,20 +1,26 @@
-/* Diced Meal Prep. Stage 2 skeleton.
-   Deliberately black and white: structure only. The world palette (cream page,
-   logo green #2CAC28, gold reserved for the primary order action) replaces these
-   tokens at Stage 4 without touching layout. */
+/* Diced Meal Prep. Stage 4 world.
+   Layout concept: Frive-style split hero on a clean off-white page, logo green as
+   the panel colour and light-green wash bands, gold ONLY as an outline that marks
+   money-saving deals and codes. Dark forest ink for text and the main button. */
 
 :root {
-  /* Skeleton tokens */
-  --color-bg: #0b0b0c;
-  --color-surface: #141416;
-  --color-panel: #1c1c1f;        /* becomes the green hero / order panels */
-  --color-ink: #f4f1ea;
-  --color-muted: #a29e97;
-  --color-line: rgba(244, 241, 234, .14);
-  --color-slot: #1e1e21;
-  --color-accent: #f4f1ea;       /* becomes gold, primary order button only */
-  --color-accent-ink: #0b0b0c;
-  --color-brand: #f4f1ea;        /* becomes logo green #2CAC28 */
+  color-scheme: light;
+  --color-bg: #fbfdfa;           /* off-white page, cool green bias */
+  --color-surface: #ffffff;
+  --color-tint: #eaf5e7;         /* light green wash for bands */
+  --color-panel: #2cac28;        /* logo green: hero + final order panels */
+  --color-panel-ink: #0d1f12;    /* ink on green, 5.8:1 */
+  --color-ink: #0d1f12;
+  --color-muted: #4e6354;
+  --color-line: rgba(13, 31, 18, .12);
+  --color-slot: #e1eedd;
+  --color-accent: #0d1f12;       /* main order button */
+  --color-accent-ink: #fbfdfa;
+  --color-brand: #2cac28;
+  --color-brand-ink: #1a7a17;    /* green as text on light, 5.3:1 */
+  --color-gold: #b8860b;         /* deal outline, 3.2:1 on page */
+  --color-gold-wash: #fff6da;
+  --shadow-soft: 0 12px 32px -16px rgba(13, 31, 18, .28);
 
   --font-display: "Archivo Black", "Archivo", system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
@@ -39,7 +45,8 @@
   --text-h1: clamp(2.6rem, 1.6rem + 4.6vw, 5.5rem);
   --text-stat: clamp(3rem, 2rem + 4.5vw, 6rem);
 
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-expo: cubic-bezier(.16, 1, .3, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -56,8 +63,9 @@ body {
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-underline-offset: .2em; }
 button { font: inherit; color: inherit; }
-::selection { background: var(--color-ink); color: var(--color-bg); }
-:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--color-brand); color: var(--color-panel-ink); }
+html { scrollbar-color: rgba(13,31,18,.35) transparent; caret-color: var(--color-brand-ink); }
+:focus-visible { outline: 2px solid var(--color-brand-ink); outline-offset: 3px; border-radius: 4px; }
 
 .wrap { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -113,7 +121,7 @@ p { margin: 0; }
   border-radius: 999px; border: 1px solid var(--color-line);
   font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer;
   background: transparent; white-space: nowrap;
-  transition: background-color .2s var(--ease-out), color .2s var(--ease-out), transform .2s var(--ease-out);
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .16s var(--ease-out);
 }
 .btn:active { transform: scale(.98); }
 .btn-primary { background: var(--color-accent); color: var(--color-accent-ink); border-color: transparent; }
@@ -487,7 +495,7 @@ p { margin: 0; }
 }
 .summary-bar .wrap { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--s2) var(--s4); }
 .progress { grid-column: 1 / -1; height: 4px; background: var(--color-line); border-radius: 2px; overflow: hidden; }
-.progress i { display: block; height: 100%; width: 0; background: var(--color-ink); transition: width .3s var(--ease-out); }
+.progress i { display: block; height: 100%; width: 100%; transform: scaleX(0); transform-origin: left center; background: var(--color-ink); transition: transform .3s var(--ease-out); }
 .summary-text { display: grid; line-height: 1.3; }
 .summary-text .count { font-weight: 800; font-variant-numeric: tabular-nums; }
 .summary-text .total { font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: tabular-nums; }
@@ -515,3 +523,163 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* =====================================================================
+   World layer: colour roles, icons, deals, hover and motion support
+   ===================================================================== */
+
+/* Icons (Lucide set, 1.75 stroke) */
+.icon { display: inline-grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--color-tint); color: var(--color-brand-ink); }
+.icon svg { width: 20px; height: 20px; }
+.btn .arrow svg, .icon-btn svg, .code-chip svg { width: 16px; height: 16px; }
+svg.i { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.stars { display: inline-flex; gap: 2px; color: var(--color-gold); }
+.stars svg { width: 16px; height: 16px; fill: currentColor; stroke: none; }
+
+/* Wordmark stand-in until the green logo file arrives */
+.logo { text-decoration: none; display: grid; align-content: center; width: auto; height: 44px; line-height: 1; }
+.logo .wm { font-family: var(--font-serif); font-style: italic; font-size: 2.1rem; letter-spacing: -0.02em; color: var(--color-brand-ink); }
+.logo .wm-sub { font-family: var(--font-display); font-size: .5rem; letter-spacing: .22em; text-transform: uppercase; margin-top: -2px; padding-left: 4px; }
+.footer-brand .logo { height: 56px; }
+.footer-brand .logo .wm { font-size: 2.75rem; }
+
+/* Offer bar: light green wash, code as a gold coupon */
+.offer-bar { background: var(--color-tint); border-bottom: 0; }
+.offer-bar .countdown b { color: var(--color-brand-ink); }
+.code-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 32px; padding: 0 10px; margin: 0 2px;
+  border: 1.5px dashed var(--color-gold); border-radius: 8px; background: var(--color-gold-wash);
+  font: 800 .8125rem/1 var(--font-text); letter-spacing: .06em; color: var(--color-ink); cursor: pointer;
+  position: relative;
+}
+.code-chip::before { content: ""; position: absolute; inset: -6px -2px; } /* 44px touch area */
+.code-chip:hover { border-style: solid; }
+.code-chip[data-copied]::after { content: "Copied"; position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); background: var(--color-ink); color: var(--color-bg); font-size: .6875rem; padding: 4px 8px; border-radius: 6px; letter-spacing: .04em; white-space: nowrap; }
+
+/* Header */
+.site-header { background: color-mix(in srgb, var(--color-bg) 94%, transparent); border-bottom-color: transparent; transition: transform .35s var(--ease-out), box-shadow .3s ease, border-color .3s ease; }
+.site-header.is-scrolled { border-bottom-color: var(--color-line); box-shadow: 0 6px 24px -18px rgba(13,31,18,.35); }
+.site-header.is-hidden { transform: translateY(-100%); }
+.cart-btn .count { background: var(--color-brand); color: var(--color-panel-ink); }
+.cart-btn svg { width: 18px; height: 18px; }
+
+/* Buttons */
+.btn-primary .arrow { background: var(--color-brand); color: var(--color-panel-ink); }
+.btn-ghost { border-color: rgba(13,31,18,.22); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { background: #1f3a26; }
+  .btn-primary:hover .arrow { transform: translateX(3px); }
+  .btn-ghost:hover { background: var(--color-tint); border-color: var(--color-brand-ink); }
+  .icon-btn:hover:not(:disabled) { background: var(--color-tint); border-color: var(--color-brand-ink); }
+  .tab:hover:not([aria-selected="true"]):not([aria-pressed="true"]) { border-color: var(--color-brand-ink); }
+}
+.btn .arrow { transition: transform .2s var(--ease-out); }
+.tab[aria-selected="true"], .tab[aria-pressed="true"] { background: var(--color-panel); color: var(--color-panel-ink); border-color: var(--color-panel); }
+
+/* Placeholder photos on the light page */
+.slot { background: var(--color-slot); border-color: rgba(13,31,18,.14); color: var(--color-muted); }
+
+/* Hero: green panel */
+.hero { background: var(--color-bg); }
+.hero-panel { background: var(--color-panel); color: var(--color-panel-ink); box-shadow: var(--shadow-soft); }
+.hero-panel .stars { color: var(--color-panel-ink); }
+.hero-points .icon { background: rgba(255,255,255,.28); color: var(--color-panel-ink); }
+.hero-panel .text-link { color: var(--color-panel-ink); }
+.deal-note { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: var(--text-sm); font-weight: 700; }
+.hero-panel .code-chip { background: var(--color-gold-wash); }
+
+/* Steps */
+.step .slot { overflow: hidden; }
+.step-label { color: var(--color-brand-ink); }
+
+/* Stats on a green wash */
+.stats { background: var(--color-tint); border-block: 0; }
+.stats .stat, .stats .stat + .stat { border-color: rgba(13,31,18,.12) !important; }
+.stat-num sup { color: var(--color-brand-ink); }
+
+/* Why list */
+.why-list li, .why-list li:last-child { border-color: var(--color-line); }
+.promise { border: 2px solid var(--color-brand); background: var(--color-tint); }
+
+/* Meal cards */
+.meal-card .slot { transition: transform .5s var(--ease-out); }
+.meal-card .media { border-radius: var(--radius); overflow: hidden; }
+.meal-card .badges { position: static; min-height: 22px; }
+.badge { background: var(--color-tint); color: var(--color-brand-ink); }
+.badge.new { background: var(--color-panel); color: var(--color-panel-ink); }
+.macros { background: var(--color-surface); }
+.macros b { color: var(--color-ink); }
+.meal-foot .btn-ghost { background: var(--color-surface); }
+@media (hover: hover) and (pointer: fine) {
+  .meal-card:hover .slot { transform: scale(1.04); }
+  .meal-card:hover h3 a { color: var(--color-brand-ink); }
+}
+
+/* Ways to order: the pack deal is outlined in gold */
+.way { background: var(--color-surface); }
+.way-featured { background: var(--color-surface); border: 2px solid var(--color-gold); box-shadow: var(--shadow-soft); }
+.way-featured .badge { background: var(--color-gold-wash); color: var(--color-ink); border: 1px solid var(--color-gold); }
+.way .saving { color: var(--color-brand-ink); }
+.way:not(.way-featured):first-of-type, .ways .way:nth-child(2) { background: var(--color-tint); border-color: transparent; }
+.pack-chip { background: var(--color-surface); }
+.pack-chip span { color: var(--color-brand-ink); font-weight: 700; }
+
+/* Reviews */
+.review { background: var(--color-surface); }
+.avatar { background: var(--color-tint); border: 0; color: var(--color-brand-ink); }
+.score b { color: var(--color-ink); }
+
+/* Final order panel */
+.final-panel { background: var(--color-panel); color: var(--color-panel-ink); box-shadow: var(--shadow-soft); }
+.final-panel .muted, .final-panel .countdown { color: var(--color-panel-ink); opacity: .9; }
+.final-panel .text-link { color: var(--color-panel-ink); }
+.final-panel [data-countdown] b { color: var(--color-panel-ink); }
+
+/* Register strip: a deal, so a gold outline */
+.register-strip { border: 0; padding-inline: var(--gutter); }
+.register-strip .wrap { border: 2px dashed var(--color-gold); background: var(--color-gold-wash); border-radius: var(--radius-lg); padding: var(--s5) var(--s5); width: min(100%, var(--max)); }
+.register-strip .muted { color: #5c4a14; }
+
+/* Footer on a green wash */
+.site-footer { background: var(--color-tint); margin-top: var(--s8); }
+.footer-base { border-color: rgba(13,31,18,.12); }
+.ai-fab { background: var(--color-ink); color: var(--color-bg); border-color: transparent; box-shadow: var(--shadow-soft); right: max(var(--s4), env(safe-area-inset-right)); bottom: max(var(--s4), env(safe-area-inset-bottom)); }
+.ai-fab .icon { width: 36px; height: 36px; background: var(--color-brand); color: var(--color-panel-ink); }
+
+/* Inner pages */
+.page-head-band { background: var(--color-tint); }
+.page-head-band .page-head { padding-bottom: clamp(40px, 5vw, 64px); }
+.page-head-band + .builder, .page-head-band + section { margin-top: clamp(40px, 5vw, 72px); }
+.menu-bar { background: color-mix(in srgb, var(--color-bg) 96%, transparent); }
+.chip input:checked + span { background: var(--color-panel); color: var(--color-panel-ink); border-color: var(--color-panel); }
+.select { background-color: var(--color-surface); }
+.upsell-band { background: var(--color-gold-wash); border: 2px solid var(--color-gold); }
+.option .face { background: var(--color-surface); transition: border-color .2s ease, background-color .2s ease; }
+.option input:checked + .face { border-color: var(--color-brand); box-shadow: inset 0 0 0 1px var(--color-brand); background: var(--color-tint); }
+.option.deal .face { border: 2px solid var(--color-gold); }
+.option.deal input:checked + .face { border-color: var(--color-gold); box-shadow: inset 0 0 0 1px var(--color-gold); background: var(--color-gold-wash); }
+.option .tag { background: var(--color-gold-wash); color: var(--color-ink); border: 1px solid var(--color-gold); }
+.option .save { color: var(--color-brand-ink); }
+.build-step-head .step-no { background: var(--color-panel); color: var(--color-panel-ink); border-color: transparent; }
+.bundle { background: var(--color-surface); }
+.stepper { background: var(--color-surface); }
+.stepper button { color: var(--color-ink); }
+@media (hover: hover) and (pointer: fine) { .stepper button:hover:not(:disabled) { background: var(--color-tint); } }
+.summary-bar { background: var(--color-surface); box-shadow: 0 -10px 30px -20px rgba(13,31,18,.4); }
+.progress i { background: var(--color-brand); }
+.how-subs .icon { width: 40px; height: 40px; }
+.day-grid .face .icon { grid-row: span 2; }
+
+/* ---------- Motion support ----------
+   Default state is fully visible. motion.js only sets a from-state on
+   elements it is about to animate, and never under reduced motion. */
+.hero-media, .final-media { overflow: hidden; }
+.hero-media .slot, .final-media .slot { will-change: transform; }
+.heading-line { display: block; }
+.stat-num [data-count] { display: inline-block; min-width: 1ch; }
+.stat-num { white-space: nowrap; font-size: clamp(2.5rem, 1.6rem + 3.4vw, 5rem); }
+.score b { font-family: var(--font-display); letter-spacing: -0.03em; font-size: clamp(3rem, 2.2rem + 3vw, 4.5rem); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
